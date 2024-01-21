@@ -1,11 +1,12 @@
-package com.spring.project.crudapi.dao;
+package com.spring.project.crudapi.services;
 
 import java.util.List;
+
 import com.spring.project.crudapi.entity.Employee;
 
-public interface EmployeeDAO {
+public interface EmployeeServices {
 	
-	public List<Employee> findAllEmployee();
+	public List<Employee> findAllEmployees();
 	public Employee findEmployee(int id);
 	public Employee addEmployee(Employee employee);
 	public String deleteEmployee(int id);

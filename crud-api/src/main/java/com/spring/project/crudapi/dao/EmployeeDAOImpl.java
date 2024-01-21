@@ -7,7 +7,10 @@ import com.spring.project.crudapi.entity.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-@Repository
+//--------------------This is old fashioned -----------------------------------------------
+//---------------------------Spring Data JPA(New Way for DAO)------------------------------------------------
+
+//@Repository
 public class EmployeeDAOImpl implements EmployeeDAO{
 
     //initialise a entitymanager
@@ -31,6 +34,28 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 				
 		//return the result		
 		return allEmployee;
+	}
+
+
+	@Override
+	public Employee findEmployee(int id) {
+		Employee employee=entityManager.find(Employee.class, id);
+		return employee;
+	}
+
+
+	@Override
+	public Employee addEmployee(Employee employee) {
+		Employee newEmployee=entityManager.merge(employee);
+		return newEmployee;
+	}
+
+
+	@Override
+	public String deleteEmployee(int id) {
+		Employee employee=entityManager.find(Employee.class, id);
+		entityManager.remove(employee);
+		return employee.toString()+" is successfully deleted from database";
 	}
 
 }
